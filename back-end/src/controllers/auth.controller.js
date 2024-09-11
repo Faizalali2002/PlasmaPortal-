@@ -49,6 +49,14 @@ export const loginController = async (req, res) => {
       });
     }
 
+    //Check Rolr
+    if (user.role !== req.body.role) {
+      return res.status(500).send({
+        success: false,
+        message: "Role Dosen't Match",
+      });
+    }
+
     // Compare the provided password with the hashed password
     const isMatch = await bcrypt.compare(req.body.password, user.password);
     if (!isMatch) {
@@ -67,6 +75,7 @@ export const loginController = async (req, res) => {
       success: true,
       message: "Login Successful",
       token, // Send the token to the client
+      user,
     });
   } catch (error) {
     console.log(error);

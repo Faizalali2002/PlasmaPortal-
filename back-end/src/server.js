@@ -5,6 +5,7 @@ import morgan from "morgan";
 import testRouter from "./routes/test.route.js";
 import connectDB from "./db/index.js";
 import authRoutes from "./routes/auth.route.js";
+import inventoryRoutes from "./routes/inventory.route.js";
 
 dotenv.config();
 
@@ -17,6 +18,7 @@ app.use(morgan("dev"));
 
 app.use("/api/v1/test", testRouter);
 app.use("/api/v1/auth", authRoutes);
+app.use("/api/v1/inventory", inventoryRoutes);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
